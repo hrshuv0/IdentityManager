@@ -1,4 +1,5 @@
-﻿using Infrastructure.Data;
+﻿using Infrastructure.Core.Entities;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace WEB.Extensions;
@@ -7,7 +8,7 @@ public static class IdentityServiceExtensions
 {
     public static void AddIdentityServices(this IServiceCollection services, IConfiguration config)
     {
-        services.AddIdentity<IdentityUser, IdentityRole>(options =>
+        services.AddIdentity<ApplicationUser, IdentityRole>(options =>
         {
             // Password configuration
             options.Password.RequireDigit = false;

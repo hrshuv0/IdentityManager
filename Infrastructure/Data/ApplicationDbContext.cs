@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Infrastructure.Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data;
 
 public class ApplicationDbContext : IdentityDbContext
 {
-public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     } 
 
@@ -13,5 +14,7 @@ public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : ba
     {
         base.OnModelCreating(builder);
     }
+
+    public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
     
 }
