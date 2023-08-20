@@ -17,4 +17,11 @@
 
 
 
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Mvc.ViewFeatures">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.10\Microsoft.AspNetCore.Mvc.ViewFeatures.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+
 </Project>

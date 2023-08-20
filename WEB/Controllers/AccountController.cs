@@ -2,6 +2,7 @@
 using Infrastructure.Core.Entities.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WEB.Controllers;
 
@@ -9,11 +10,15 @@ public class AccountController : Controller
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
 
-    public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+    public AccountController(UserManager<ApplicationUser> userManager, 
+    SignInManager<ApplicationUser> signInManager, 
+    RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _roleManager = roleManager;
     }
 
     // GET
@@ -52,9 +57,24 @@ public class AccountController : Controller
     
     
     [HttpGet]
-    public IActionResult Register()
+    public async Task<IActionResult> Register()
     {
-        var model = new RegisterVm();
+        if(!await _roleManager.RoleExistsAsync("Admin"))
+        {
+            await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            await _roleManager.CreateAsync(new IdentityRole("User"));
+        }
+        
+        var listItems = new List<SelectListItem>
+        {
+            new() { Text = "Admin", Value = "Admin" },
+            new() { Text = "User", Value = "User" }
+        };
+
+        var model = new RegisterVm()
+        {
+            RoleList = listItems
+        };
         
         return View(model);
     }
@@ -79,10 +99,27 @@ public class AccountController : Controller
 
         if (result.Succeeded)
         {
+            if (!string.IsNullOrWhiteSpace(model.RoleSelected) && model.RoleSelected == "Admin")
+            {
+                await _userManager.AddToRoleAsync(user, "Admin");
+            }
+            else
+            {
+                await _userManager.AddToRoleAsync(user, "User");
+            }
+            
             await _signInManager.SignInAsync(user, false);
         }
         else
         {
+            var listItems = new List<SelectListItem>
+            {
+                new() { Text = "Admin", Value = "Admin" },
+                new() { Text = "User", Value = "User" }
+            };
+
+            model.RoleList = listItems;
+            
             AddErrors(result);
             return View(model);
         }

@@ -4,5 +4,13 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if (User.IsInRole("Admin"))
+    {
+        <h2 class="text-info">Your role is - Admin</h2>
+    }
+    else
+    {
+        <h2 class="text-info">Your role is - User</h2>
+    }
+
 </div>
