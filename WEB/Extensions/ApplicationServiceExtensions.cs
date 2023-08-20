@@ -13,5 +13,10 @@ public static class ApplicationServiceExtensions
             options.UseSqlServer(connectionString);
         });
 
+        services.ConfigureApplicationCookie(opt =>
+        {
+            opt.AccessDeniedPath = new PathString("/Home/AccessDenied");
+        });
+
     }
 }
