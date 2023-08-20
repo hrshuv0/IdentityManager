@@ -28,6 +28,29 @@ public class AccountController : Controller
         return View();
     }
     
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Login(LoginVm model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+        
+        var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+        if(result.Succeeded)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        else
+        {
+            ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            return View(model);
+        } 
+    }
+    
+    
     [HttpGet]
     public IActionResult Register()
     {
