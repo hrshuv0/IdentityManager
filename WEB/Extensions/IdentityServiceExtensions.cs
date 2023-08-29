@@ -8,7 +8,7 @@ public static class IdentityServiceExtensions
 {
     public static void AddIdentityServices(this IServiceCollection services, IConfiguration config)
     {
-        services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+        services.AddIdentity<IdentityUser, IdentityRole>(options =>
         {
             // Password configuration
             options.Password.RequireDigit = false;
