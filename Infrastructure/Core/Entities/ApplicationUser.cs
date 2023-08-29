@@ -1,4 +1,5 @@
-﻿using Infrastructure.Core.Enums;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Infrastructure.Core.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Core.Entities;
@@ -11,4 +12,9 @@ public class ApplicationUser : IdentityUser
     public Guid CreatedBy { get; set; }
     public Guid ModifiedBy { get; set; }
     public Status Status { get; set; }
+
+    [NotMapped]
+    public string RoleId { get; set; }
+    [NotMapped]
+    public string Role { get; set; }
 }
