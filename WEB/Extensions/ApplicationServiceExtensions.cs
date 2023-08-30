@@ -16,6 +16,7 @@ public static class ApplicationServiceExtensions
         services.ConfigureApplicationCookie(opt =>
         {
             opt.AccessDeniedPath = new PathString("/Home/AccessDenied");
+            opt.LoginPath = new PathString("/Identity/Account/Login");
         });
 
     }

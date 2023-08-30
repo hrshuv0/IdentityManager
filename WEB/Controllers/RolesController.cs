@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -65,15 +66,10 @@ public class RolesController : Controller
         
         return View(role);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+    public IActionResult Delete()
+    {
+        throw new NotImplementedException();
+    }
 }
