@@ -68,8 +68,16 @@ public class RolesController : Controller
     }
 
 
-    public IActionResult Delete()
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Delete(string id)
     {
-        throw new NotImplementedException();
+        var roleFromDb = _dbContext.Roles.FirstOrDefault(u => u.Id == id);
+        if (roleFromDb is null) return NotFound();
+        
+        _dbContext.Roles.Remove(roleFromDb);
+        _dbContext.SaveChanges();
+        
+        return RedirectToAction(nameof(Index));
     }
 }
