@@ -1,0 +1,42 @@
+﻿@model IEnumerable<IdentityRole>
+
+@{
+    Layout = "_Layout";
+}
+
+<br/>
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-primary">Role List</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a asp-action="Upsert" asp-controller="Roles" class="btn btn-primary">Create New</a>
+
+    </div>
+</div>
+
+<div class="p-4 border rounded">
+    
+    @if (Model.Any())
+    {
+        <table class="table table-striped border">
+            <tr class="text-secondary">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+            
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td></td>
+                </tr>
+            }
+
+        </table>
+    }
+
+</div>
