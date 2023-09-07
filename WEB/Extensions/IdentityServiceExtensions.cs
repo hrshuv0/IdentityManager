@@ -18,12 +18,15 @@ public static class IdentityServiceExtensions
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequiredUniqueChars = 1;
         })
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders()
+            .AddDefaultUI();
 
-        services.ConfigureApplicationCookie(opt =>
-        {
-            opt.LoginPath = "/Identity/Account/Login";
-        });
+        // services.ConfigureApplicationCookie(opt =>
+        // {
+        //     opt.LoginPath = "/Identity/Account/Login";
+        //     opt.AccessDeniedPath = "/Identity/Account/AccessDenied";
+        // });
 
 
 

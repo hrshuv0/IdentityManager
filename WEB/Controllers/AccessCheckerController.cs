@@ -12,12 +12,20 @@ public class AccessCheckerController : Controller
         return View();
     }
     
+    [Authorize]
     public IActionResult AuthorizedAccess()
     {
         return View();
     }
     
+    [Authorize(Roles = "User")]
     public IActionResult UserAccess()
+    {
+        return View();
+    }
+    
+    [Authorize(Roles = "User,Admin")]
+    public IActionResult UserOrAdminAccess()
     {
         return View();
     }
