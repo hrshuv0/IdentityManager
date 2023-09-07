@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WEB.Controllers;
 
+[Authorize]
 public class AccessCheckerController : Controller
 {
-    // GET
+    [AllowAnonymous]
     public IActionResult AllAccess()
     {
         return View();

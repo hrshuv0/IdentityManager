@@ -28,6 +28,22 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
                     </li>
+                    
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="AllAccess">All Access</a></li>
+                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="AuthorizedAccess">Authorized Access</a></li>
+                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="UserAccess">USer Access</a></li>
+                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="AdminAccess">Admin Access</a></li>
+                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="Admin_CreateAccess">Admin Create</a></li>
+                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="Admin_Create_Edit_Delete">Admin CRUD</a></li>
+                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="Admin_Create_Edit_Delete_SuperAdmin">Admin | Super Admin</a></li>
+
+                      </ul>
+                    </li>
                 </ul>
                 <partial name="_LoginPartial"/>
             </div>

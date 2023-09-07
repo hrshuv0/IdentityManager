@@ -20,5 +20,12 @@ public static class IdentityServiceExtensions
         })
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
+        services.ConfigureApplicationCookie(opt =>
+        {
+            opt.LoginPath = "/Identity/Account/Login";
+        });
+
+
+
     }
 }
