@@ -30,6 +30,7 @@ public class AccessCheckerController : Controller
         return View();
     }
     
+    [Authorize(Policy = "Admin")]
     public IActionResult AdminAccess()
     {
         return View();

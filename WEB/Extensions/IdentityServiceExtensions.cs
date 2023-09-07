@@ -28,6 +28,11 @@ public static class IdentityServiceExtensions
         //     opt.AccessDeniedPath = "/Identity/Account/AccessDenied";
         // });
 
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+        });
+
 
 
     }
