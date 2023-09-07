@@ -30,7 +30,30 @@
                     <td>@item.Email</td>
                     <td>@item.Name</td>
                     <td>@item.Role</td>
-                    <td></td>
+                    <td>
+                        <div class="text-center">
+                            <form asp-action="Delete" asp-route-id="@item.Id">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info text-white" style="cursor: pointer">Edit</a>
+                                
+                                <a asp-action="ManageUserClaims" asp-route-userId="@item.Id" class="btn btn-primary text-white" style="cursor: pointer">Claims</a>
+                                
+                                @if(item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
+                                {
+                                    <button asp-action="LockUnlock" asp-route-userId="@item.Id" type="button" class="btn btn-success text-white" style="cursor: pointer">
+                                        <span>&nbsp; Lock</span>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button asp-action="LockUnlock" asp-route-userId="@item.Id" type="button" class="btn btn-warning text-white" style="cursor: pointer">
+                                        <span>&nbsp; Unlock</span>
+                                    </button>
+                                }
+                                
+                            </form>
+
+                        </div>
+                    </td>
                 </tr>
             }
 
